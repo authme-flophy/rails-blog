@@ -7,6 +7,9 @@
     <%= form.label :body %><br>
     <%= form.text_area :body %>
   </div>
+    <%= form.label :images %><br>
+    <%= form.file_field :images, :multiple => true %>
+  </div>
   <div>
     <%= form.submit %>
   </div>

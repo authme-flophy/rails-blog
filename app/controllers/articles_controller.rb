@@ -13,6 +13,14 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    # This is for when you want to resize on upload
+    # unless Rails.env.test?
+    #   path = article_params[:image].tempfile.path
+    #   ImageProcessing::MiniMagick.source(path)
+    #     .resize_to_limit(300, 300)
+    #     .call(destination: path)
+    # end
+
     @article = Article.new(article_params)
 
     if @article.save
@@ -27,6 +35,14 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    # This is for when you want to resize on upload
+    # unless Rails.env.test?
+    #   path = article_params[:image].tempfile.path
+    #   ImageProcessing::MiniMagick.source(path)
+    #     .resize_to_limit(300, 300)
+    #     .call(destination: path)
+    # end
+
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
@@ -45,7 +61,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, images: [])
   end
 
 end

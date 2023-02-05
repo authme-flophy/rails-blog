@@ -1,4 +1,9 @@
 <h1><%= @article.title %></h1>
+<% if @article.images.attached? %>
+<% @article.images.each do |image| %>
+  <%= image_tag image, :width=>300, :height=>500 %>
+<% end %>
+<% end %>
 <p><%= @article.body %></p>
 
 <ul>
